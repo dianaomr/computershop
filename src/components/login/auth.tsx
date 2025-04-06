@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import "./auth.css";
+import "../../styles/auth.css";
 
 export default function Auth() {
  

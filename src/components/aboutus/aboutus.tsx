@@ -4,9 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import "../../components/aboutus/aboutus.css";
-
-
+import "../../styles/aboutus.css";
 
 export default function AboutUs() {
 

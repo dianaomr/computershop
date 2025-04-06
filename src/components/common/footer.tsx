@@ -1,5 +1,5 @@
 import { FaClock, FaHeadphones, FaEnvelope , FaMapMarkedAlt } from "react-icons/fa";
-import "../../components/contactus/contactus.css";
+import "../../styles/contactus.css";
 
 const Footer: React.FC = () => {
     return (
