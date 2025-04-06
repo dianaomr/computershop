@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/interface/Iproduct";
+import { IProduct } from "@/types/Iproduct";
 import { Key, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "@/redux/reducers/cartReducer";

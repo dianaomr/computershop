@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/interface/Iproduct";
+import { IProduct } from "@/types/Iproduct";
 import ProductCard from "./product_card";
 import ProductFilters from "./product_filters";
 import { useState, useEffect } from "react";
