@@ -1,4 +1,3 @@
-import Product from "@/components/product/product";
 
 import { fetchProducts } from "@/utils/productService";
 import ProductDetail from "@/components/client/product/productDetail";
@@ -18,4 +17,6 @@ const ProductDetailPage = async ({ params }: Props) => {
   ;
 };
 
-export default ProductPage;
+export default ProductDetailPage;
+
+
