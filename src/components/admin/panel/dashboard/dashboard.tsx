@@ -28,7 +28,7 @@ export default function DashboardPage() {
           داشبورد مدیریت
         </h1>
 
-        {/* کارت‌های آماری - ریسپانسیو */}
+        {/* کارت‌های آماری */}
         <div className="dasboard-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
           <StatsCard title="فروش امروز" value="₩ ۲,۵۰۰,۰۰۰" />
           <StatsCard title="سفارشات جدید" value="۳۲" />
