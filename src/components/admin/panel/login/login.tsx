@@ -32,7 +32,6 @@ export default function AdminLoginPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden font-sans">
-      {/* پس‌زمینه مورب بالا چپ با لوگو */}
       <div className="absolute inset-0 clip-top z-10 flex items-start justify-end p-24">
         <img
           src="https://www.irantimer.com/Images/Style_v2/Logo_IT_Black.png"
@@ -41,7 +40,6 @@ export default function AdminLoginPage() {
         />
       </div>
 
-      {/* پس‌زمینه مورب پایین راست */}
       <div className="absolute inset-0 bg-white clip-bottom z-10"></div>
 
       {/* فرم لاگین */}
