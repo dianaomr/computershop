@@ -1,10 +1,8 @@
 import { FaClock, FaHeadphones, FaEnvelope , FaMapMarkedAlt } from "react-icons/fa";
-import "../../styles/contactus.css";
 
 const Footer: React.FC = () => {
     return (
       <footer className="footer text-black text-center items-center p-4">
-         {/* <FaClock className="clock text-blue-500 text-3xl mb-2 text-center items-center " /> */}
        <h1 className="text-lg font-bold text-center">پاسخگویی ۲۴ ساعته و ۷ روز هفته</h1>
        <div className="contact p-6 rounded-lg shadow-lg flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
          <div className="phone flex flex-col items-center p-4 rounded-lg shadow w-full md:w-1/2">
@@ -28,7 +26,7 @@ const Footer: React.FC = () => {
 </p>
          </div>
        </div>
-       <p className="pt-10"> کلیه حقوق مادی و معنوی این سایت متعلق به گروه فیدیبو می باشد &copy; {new Date().getFullYear()}</p>
+       <p className="pt-2"> کلیه حقوق مادی و معنوی این سایت متعلق به گروه فیدیبو می باشد &copy; {new Date().getFullYear()}</p>
 
       </footer>
    
