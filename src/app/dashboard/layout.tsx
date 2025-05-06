@@ -1,7 +1,7 @@
 
 
 import QueryProvider from "../../components/admin/providers/query-provider";
-import AdminSidebar from '../../components/admin/sidebar';
+import AdminSidebar from '../../components/common/sidebar';
 import ReduxProvider from '@/providers/reduxprovider';
 
 import "@/styles/globals.scss";
@@ -15,12 +15,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <html lang="fa" dir="rtl"> 
       <body>
-       
+        <QueryProvider>
+          <ReduxProvider> 
             <div className="flex min-h-screen">
               <AdminSidebar />
               <main className="flex-grow">{children}</main>
             </div>
-         
+          </ReduxProvider>
+        </QueryProvider>
       </body>
     </html>
   );
