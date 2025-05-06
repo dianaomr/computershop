@@ -1,29 +1,33 @@
-// "use client";
-// // /app/client/payment-success/page.tsx
-// const PaymentSuccessPage = () => {
-//     return (
-//       <div className="text-center py-16">
-//         <h1 className="text-3xl font-bold text-green-600">پرداخت با موفقیت انجام شد ✅</h1>
-//         <p className="mt-4 text-lg">سفارش شما با موفقیت ثبت شد. ممنون از خرید شما!</p>
-//       </div>
-//     );
-//   };
-  
-//   export default PaymentSuccessPage;
-  
-"use client";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
-import { clearCart } from "@/redux/slices/cartSlice";
 
-export default function PaymentSuccessPage() {
+'use client';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { CheckCircle } from "lucide-react";
+
+const PaymentSuccessPage = () => {
+  const order = useSelector((state: RootState) => state.latestOrder.order);
+
+  if (!order) return <p>سفارشی یافت نشد.</p>;
+
   return (
-    <div className="text-center py-16">
-         <h1 className="text-3xl font-bold text-green-600">پرداخت با موفقیت انجام شد ✅</h1>
-         <p className="mt-4 text-lg">سفارش شما با موفقیت ثبت شد. ممنون از خرید شما!</p>
-       </div>
+    <div dir='rtl' className="max-w-xl mx-auto p-4 bg-white shadow rounded">
+                <CheckCircle className=" CheckCircle w-16 h-16 mx-auto mb-4" />
+      <h2 className="text-center text-xl font-bold mb-4"> سفارش شما با موفقیت ثبت شد 🎉</h2>
+      <p className='text-right'> {order.customer.name} <strong>نام مشتری:</strong></p>
+      <p className='text-right'>{new Date(order.createdAt).toLocaleDateString('fa-IR')} <strong>تاریخ:</strong> </p>
+      <hr className="my-2" />
+      <ul className="space-y-2">
+        {order.items.map((item: any, idx: number) => (
+          <li key={idx} className="flex justify-between">
+            <span>{item.product.name}</span>
+            <span>{item.quantity.toLocaleString('fa-IR')} عدد</span>
+          </li>
+        ))}
+      </ul>
+      <hr className="my-2" />
+      <p className="font-bold">جمع کل: {order.total.toLocaleString('fa-IR')} تومان</p>
+    </div>
   );
+};
 
-}
-
+export default PaymentSuccessPage;
