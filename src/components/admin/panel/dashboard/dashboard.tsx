@@ -1,3 +1,4 @@
+
 "use client";
 
 import StatsCard from "./StatsCard";
@@ -28,20 +29,20 @@ export default function DashboardPage() {
           داشبورد مدیریت
         </h1>
 
-        {/* کارت‌های آماری */}
+        {/* کارت‌های آماری  */}
         <div className="dasboard-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
-          <StatsCard title="فروش امروز" value="₩ ۲,۵۰۰,۰۰۰" />
+          <StatsCard title="فروش امروز" value=" ۲,۵۰۰,۰۰۰ تومان" />
           <StatsCard title="سفارشات جدید" value="۳۲" />
           <StatsCard title="کاربران فعال" value="۱۲۰" />
           <StatsCard title="محصولات موجود" value="۳۵" />
         </div>
 
-        {/* نمودار فروش */}
+        {/* نمودار  */}
         <div className=" opacity-50 backdrop-blur-sm rounded-xl shadow-md p-4 md:p-6 border border-black mb-10">
           <Chart />
         </div>
 
-        {/* ویدیو مکمل نمودار */}
+        {/* ویدیو نمودار */}
         <div className="w-full flex justify-center">
           <video
             autoPlay
