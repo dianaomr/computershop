@@ -1,0 +1,199 @@
+@import "tailwindcss";
+// @import "tw-animate-css";
+/* @import "tailwindcss-animate"; */
+
+
+
+// @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+body, * {
+  font-family: "Vazirmatn", "Ubuntu", sans-serif;
+  font-family: 'Vazir', sans-serif;
+
+  font-feature-settings: "ss02";
+  unicode-bidi: plaintext;
+}
+.farsi-digits {
+  font-family: "Vazirmatn", "Ubuntu", sans-serif;
+  direction: rtl;
+  unicode-bidi: plaintext;
+  font-variant-numeric: ordinal;
+}
+
+
+:root {
+    --dark: #222831;
+    --blue: #446485;
+    --light: #DDDDDD;
+    --red: #F05454;
+    --second-light:#4875a0;
+    --shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  
+    --gradient-modified: linear-gradient(
+      130deg,
+      var(--blue),
+      var(--dark),
+      var(--red),
+      var(--light),
+      var(--second-light),
+      );
+    --rounded-top: 6rem 6rem 2rem 2rem;
+    --rounded-bottom: 2rem 2rem 6rem 6rem;
+    --rounded-left: 6rem 2rem 2rem 6rem;
+    --rounded-right: 2rem 6rem 6rem 2rem;
+  }
+
+  main{
+    background-color: var(--light);
+  }
+
+.sidebar {
+  background-color: var(--dark);
+  font-family: "Ubuntu", sans-serif;
+  padding: 0.9rem 2rem;
+  // border-radius: 0.5rem;
+  // font-weight: 600;
+  // letter-spacing: 0.1px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  .sidebar-items-text{
+    li{
+    color: var(--blue);
+    font-size: 1.2rem;
+   padding: 0.2rem ;
+   .sidebar-items-box{
+    &:hover {
+      color: var(--light);
+      border-bottom: solid whitesmoke 1px;
+    }
+   }
+  }
+}
+}
+
+.states-card{
+  background-color: var(--blue);
+  p{
+    color:var(--light);
+  }
+  h3{
+    color:var(--light);
+  }
+}
+
+.product-p-main{
+  background-color: var(--light);
+.add-button{
+  background-color: var(--blue);
+}
+}
+
+table{
+  background-color: var(--blue);
+  thead{
+    background-color: var(--dark);
+    color:var(--light);
+  }
+  td{
+    background-color: var(--blue);
+    color:var(--light);
+    padding-right: 4%;
+  }
+}
+button{
+  background-color: var(--dark);
+  color:var(--light);
+  border-radius: 10px;
+  padding: 10px;
+ 
+&:hover{
+  background-color: var(--second-light);
+  background-color: var(--blue);
+
+  color: var(--dark);
+}
+}
+
+.modal-quantity{
+  background-color: var(--light);
+
+}
+
+.home-page{
+  background-color: var(--light);
+
+}
+.product-list{
+  background-color: var(--light);
+}
+.pro-card{
+  &:hover{
+    background-color: var(--dark);
+    color: #DDDDDD;
+  }
+  
+}
+.header{
+  background-color: var(--light);
+
+}
+.navbar{
+  background-color: var(--light);
+  color: var(--dark);
+  padding-bottom: 10px;
+li{
+  &:hover{
+    border-bottom: #222831 3px solid;
+  }
+}
+}
+.footer{
+  background-color: var(--light);
+  color: var(--dark);
+  .contact{
+    background-color: var(--dark);
+    color: var(--light);
+  }
+.email , .phone{
+  &:hover{
+    background-color: var(--light);
+    color: var(--dark);
+  }
+}
+}
+
+.filter-part{
+  .filter-input{
+    background-color: var(--dark);
+    color: var(--light);
+  }
+}
+.productform{
+  background-color:var(--light) ;
+  Label{
+    margin-bottom: 4px;
+  }
+}
+.Calendar {
+  background-color:var(--dark) ;
+  h1 , p{
+    color: var(--light);
+  }
+}
+.map {
+  background-color:var(--dark) ;
+  h1 , p{
+    color: var(--light);
+  }
+}
+.form{
+  background-color:var(--dark) ;
+  
+}
+.CheckCircle{
+  color:darkolivegreen ;
+}
+.FaHeart{
+  color:var(--red);
+}
