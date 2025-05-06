@@ -1,6 +1,4 @@
 
-// quantitySlice.ts
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../../utils/quantityService';
 
@@ -20,9 +18,12 @@ const quantitySlice = createSlice({
       state.quantities = action.payload;
     },
     updateQuantity: (state, action: PayloadAction<Product>) => {
-      const index = state.quantities.findIndex(q => q.id === action.payload.id);
+      const index = state.quantities.findIndex(p => p.id === action.payload.id);
       if (index !== -1) {
-        state.quantities[index] = action.payload;
+        state.quantities[index] = {
+          ...state.quantities[index],
+          ...action.payload,
+        };
       }
     },
   },
@@ -30,4 +31,3 @@ const quantitySlice = createSlice({
 
 export const { setQuantities, updateQuantity } = quantitySlice.actions;
 export default quantitySlice.reducer;
-

@@ -1,20 +1,18 @@
 
-  // src/redux/slices/productSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
- interface Product {
-    id?: string;
-    name: string;
-    price: number;
-    category?: string;
-    gender?: string;
-    brand?: string;
-    feature?: string;
-    description?: string;
-    image?: string;
-    stock?: number;
-  }
-  
+interface Product {
+  id?: string;
+  name: string;
+  price: number;
+  category?: string;
+  gender?: string;
+  brand?: string;
+  feature?: string[]; 
+  description?: string;
+  image?: string;
+  stock?: number;
+}
 
 interface ProductState {
   products: Product[];
