@@ -8,12 +8,6 @@ function toPersianDigits(str: string): string {
 
   return enToFa(str);
 }
-const formatPrice = (num: number): string => {
-    const withCommas = num.toLocaleString("en-US"); 
-    const toPersianDigits = withCommas.replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[parseInt(d)]);
-    return toPersianDigits;
-  };
-  
 
 const usePersianNumbers = () => {
   useEffect(() => {
