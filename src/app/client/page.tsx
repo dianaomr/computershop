@@ -1,6 +1,6 @@
 import Home from "@/components/client/home/home";
 export const metadata = {
-  title: "وبسایت اصلی",
+  title: " خانه",
   description: "صفحات عمومی سایت",
 };
 
