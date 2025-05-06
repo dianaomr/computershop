@@ -7,16 +7,13 @@ interface Props {
 }
 
 const ProductDetailPage = async ({ params }: Props) => {
-  const allProducts = await fetchProducts();
-  const product = allProducts.find((p) => p.id === params.id);
+  const response = await fetchProducts(); 
+  const product = response.records.find((p) => p.id === params.id); 
 
   if (!product) return <p>محصولی یافت نشد.</p>;
 
-  return <ProductDetail product={product} />
-  
-  ;
+  return <ProductDetail product={product} />;
 };
 
 export default ProductDetailPage;
-
 
