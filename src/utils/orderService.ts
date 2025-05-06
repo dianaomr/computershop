@@ -6,7 +6,7 @@ export const BASE_URL = "http://api.alikooshesh.ir:3000";
 export const API_KEY = "omraniUhv3cmCFgVPhMsO7R5MYFpAc1kK53fG4GJw9eLdRg9EzOFA6yv81sInUi8PJLkPyIfQOi3oR4ZKXt4keheKYqmjfov9EgwQUky4phCNcsbiAgtmGrhEnyPDVng";
 export const apiUrl = `${BASE_URL}/api/records/orders`;
 
-// ساخت client axios با headers پیش‌فرض
+// ساخت   headers پیش‌فرض
 const axiosInstance = axios.create({
   baseURL: apiUrl,
   headers: {
