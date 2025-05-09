@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
-
-// app/layout.tsx
+import { Providers } from "./providers";
+import "../styles/globals.scss"
 export const metadata = {
     title: ' ایران تایمر',
     description: ' پروژه با دو بخش کلاینت و ادمین',
@@ -9,8 +9,10 @@ export const metadata = {
   export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
       <html lang="fa" dir="rtl">
-        <body>{children}</body>
-        <Toaster/>
+       <body>
+        <Providers>{children}</Providers>
+      </body>
+      <Toaster/>
       </html>
     );
   }
