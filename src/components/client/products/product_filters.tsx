@@ -19,7 +19,7 @@ const ProductFilters = () => {
   const filters = useSelector((state: RootState) => state.filters);
 
   return (
-    <div dir="rtl" className="filter-part flex flex-col gap-4 text-sm">
+    <div dir="rtl" className="filter-part flex flex-col gap-4 text-sm p-2">
       <h2 className="text-xl font-semibold mb-2 text-black">فیلتر محصولات</h2>
 
       {/* جستجو */}

@@ -1,8 +1,7 @@
-
 "use client";
 import React, { useState } from "react";
 import type { Product } from "@/utils/productService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slices/cartSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,12 +10,19 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/utils/productService";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { addToFavorites } from "@/redux/slices/favoriteSlice";
+import { addToFavorites, removeFromFavorites } from "@/redux/slices/favoriteSlice";
 import toast from "react-hot-toast";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { RootState } from "@/redux/store";
 
-// آیکون‌ها
-import { ShoppingCart, ChevronDown, ChevronUp, FileText, Store , CheckCircle } from "lucide-react";
+import {
+  ShoppingCart,
+  ChevronDown,
+  ChevronUp,
+  FileText,
+  Store,
+  CheckCircle,
+} from "lucide-react";
 
 interface Props {
   product: Product;
@@ -26,9 +32,11 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
   const { data } = useQuery({ queryKey: ["products"], queryFn: fetchProducts });
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const [showDescription, setShowDescription] = useState(false); 
+  const [showDescription, setShowDescription] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+  const favorites = useSelector((state: RootState) => state.favorites.items);
+  const isFavorite = favorites.some((item) => item.id === product.id);
 
   const formatPrice = (num: number): string => {
     const withCommas = num.toLocaleString("en-US");
@@ -45,6 +53,27 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
     setShowModal(true);
   };
 
+  const handleFavoriteClick = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      setShowModal(true);
+      return;
+    }
+  
+    if (!product.id) {
+      toast.error("شناسه محصول نامعتبر است");
+      return;
+    }
+  
+    if (isFavorite) {
+      dispatch(removeFromFavorites(product.id));
+      toast.success("از علاقه‌مندی‌ها حذف شد!");
+    } else {
+      dispatch(addToFavorites(product));
+      toast.success("به علاقه‌مندی‌ها اضافه شد!");
+    }
+  };
+
   const increment = () => {
     if (!product.stock || quantity < product.stock) {
       setQuantity((q) => q + 1);
@@ -57,59 +86,81 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
 
   return (
     <div className="p-8 max-w-6xl mx-auto">
-      {/* محصول اصلی */}
-      <div className="flex flex-wrap gap-8">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full sm:w-1/2 max-w-md h-96 object-cover rounded"
-        />
-        <div className="flex flex-col gap-6 flex-1">
-          <div className="flex justify-between gap-10">
-          <h1 className="text-2xl font-bold flex justify-between">
-  {product.name}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {/* عکس محصول */}
+  <div className="w-full">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-80 object-cover rounded"
+    />
+  </div>
 
-         {/* add to favorite */}
-  <FaHeart
-  size={30}
-  className="FaHeart cursor-pointer hover:scale-110 transition"
-  onClick={() => {
-    dispatch(addToFavorites(product));
-    toast.success("محصول به علاقه‌مندی‌ها اضافه شد!");
-  }}
-/>
-          </div>
-          
-          <p>برند: {product.brand}</p>
-          <h1 className="font-semibold text-xl ">جزئیات محصول :</h1>
-          <p>دسته‌بندی: {product.category}</p>
-          <p>ویژگی: {product.feature}</p>
-          <p>جنسیت: {product.gender}</p>
-          {/* <p>موجودی: {formatPrice(product.stock ?? "نامشخص" )}</p> */}
-          <p>موجودی: {typeof product.stock === "number" ? formatPrice(product.stock) : "نامشخص"}</p>
+  {/* جزئیات محصول */}
+  <div className="flex flex-col gap-4 w-full">
+    <div className="flex justify-between items-start">
+      <h1 className="text-2xl font-bold">{product.name}</h1>
+
+       {isFavorite ? (
+          <FaHeart
+            size={30}
+            className="FaHeart cursor-pointer hover:scale-110 transition"
+            onClick={handleFavoriteClick}
+          />
+        ) : (
+          <FaRegHeart
+            size={30}
+            className="cursor-pointer hover:scale-110 transition"
+            onClick={handleFavoriteClick}
+          />
+        )}
+    </div>
 
 
-          {/* کنترل تعداد */}
-          <div className="flex justify-between">
-            <p className="px-3 mt-4"><strong>قیمت:</strong> {formatPrice(product.price)} تومان</p>
-            <div className="flex items-center gap-4">
-              <button onClick={decrement} className="px-3 py-1 bg-gray-300 rounded">-</button>
-              <span>{quantity}</span>
-              <button onClick={increment} className="px-3 py-1 bg-gray-300 rounded">+</button>
-            </div>
-          </div>
+    <p>برند: {product.brand}</p>
+    <h1 className="font-semibold text-xl">جزئیات محصول :</h1>
+    <p>دسته‌بندی: {product.category}</p>
+    <p>ویژگی: {product.feature}</p>
+    <p>جنسیت: {product.gender}</p>
+    <p>
+      موجودی:{" "}
+      {typeof product.stock === "number"
+        ? formatPrice(product.stock)
+        : "نامشخص"}
+    </p>
+  </div>
 
-          <button
-            onClick={handleAddToCart}
-            className="bg-black text-white px-4 py-2 rounded hover:bg-white hover:text-black transition flex items-center justify-center gap-2"
-          >
-            <ShoppingCart size={18} />
-            افزودن به سبد خرید
-          </button>
-        </div>
+  {/* خلاصه خرید */}
+  <div className="border p-4 rounded bg-gray-50 w-full h-fit">
+    <h2 className="text-lg font-semibold mb-4">خلاصه خرید</h2>
+    <p className="mb-2">قیمت واحد: {formatPrice(product.price)} تومان</p>
+
+    <div className="flex items-center justify-between mb-2">
+      <span>تعداد:</span>
+      <div className="flex items-center gap-3">
+        <button onClick={decrement} className="px-2 py-1 bg-gray-300 rounded">-</button>
+        <span>{quantity}</span>
+        <button onClick={increment} className="px-2 py-1 bg-gray-300 rounded">+</button>
       </div>
+    </div>
 
-      {/* توضیحات محصول آکاردئونی */}
+    <p className="mb-4 font-bold">
+      قیمت کل: {formatPrice(quantity * product.price)} تومان
+    </p>
+
+    <button
+      onClick={handleAddToCart}
+      className="bg-black text-white px-4 py-2 rounded w-full hover:bg-gray-800 transition flex items-center justify-center gap-2"
+    >
+      <ShoppingCart size={18} />
+      افزودن به سبد خرید
+    </button>
+  </div>
+</div>
+
+
+
+      {/* توضیحات محصول */}
       <div className="mt-12">
         <button
           onClick={() => setShowDescription(!showDescription)}
@@ -144,12 +195,12 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
         >
           {relatedProducts.map((p) => (
             <SwiperSlide key={p.id}>
-            <Link href={`/product/${p.id}`}>
-              <div className="p-2 bg-white rounded shadow-md text-center w-full h-54 ">
-                <img src={p.image} alt={p.name} className="w-full h-38 object-cover rounded" />
-                <h3 className="font-bold mt-2">{p.name}</h3>
-                <p>قیمت: {formatPrice(p.price)} تومان</p>
-              </div>
+              <Link href={`/product/${p.id}`}>
+                <div className="p-2 bg-white rounded shadow-md text-center w-full h-54">
+                  <img src={p.image} alt={p.name} className="w-full h-38 object-cover rounded" />
+                  <h3 className="font-bold mt-2">{p.name}</h3>
+                  <p>قیمت: {formatPrice(p.price)} تومان</p>
+                </div>
               </Link>
             </SwiperSlide>
           ))}
@@ -158,9 +209,9 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
 
       {/* مودال اضافه شدن به سبد خرید */}
       {showModal && (
-  <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50">
-  <div className="bg-white p-6 rounded shadow-lg w-96 text-center">
-          <CheckCircle className=" CheckCircle w-16 h-16 mx-auto mb-4" />
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg w-96 text-center">
+            <CheckCircle className="CheckCircle w-16 h-16 mx-auto mb-4" />
             <h2 className="text-lg font-semibold mb-4">✅ محصول به سبد خرید اضافه شد</h2>
             <div className="flex justify-between gap-4">
               <button

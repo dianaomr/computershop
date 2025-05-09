@@ -76,40 +76,47 @@ export default function ProductsContainer() {
               className="cursor-pointer hover:opacity-80 transition-all"
             >
               <Image src={item.image} width={380} height={300} alt={item.gender} className="rounded" />
-              {/* <p className="text-center mt-2">{item.gender}</p> */}
             </div>
           ))}
         </div>
 
-      {/* محصولات مشابه */}
-      <div className="mt-16 ">
-        <h2 className="text-xl font-semibold mb-4"> محصولات پرطرفدار</h2>
-        <Swiper
-          spaceBetween={20}
-          autoplay={{ delay: 3000 }}
-          modules={[Autoplay]}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
-          }}
-          className="w-full"
-        >
-          {relatedProducts.map((p) => (
-            <SwiperSlide key={p.id}>
-            <Link href={`/product/${p.id}`}>
-              <div className="p-2 bg-white rounded shadow-md text-center w-full h-54 ">
-                <img src={p.image} alt={p.name} className="w-full h-38 object-cover rounded" />
-                <h3 className="font-bold mt-2">{p.name}</h3>
-                <p>قیمت: {formatPrice(p.price)} تومان</p>
-              </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      
+<div className="mt-16 bg-white p-2 rounded-md grid grid-cols-1 md:grid-cols-4 gap-2 items-center">
+  <div className="col-span-1 flex w-[250px] m-6 items-center rounded-md min-h-[100px] ">
+    <img className=" flex h-[200px] text-center items-center justify-center "   src="/images/slide.jpg"></img>
+  </div>
 
+  <div className="col-span-3">
+    <h2 className="text-lg font-semibold mb-4 text-right mr-4">محصولات پرطرفدار</h2>
+    <Swiper
+      spaceBetween={12}
+      autoplay={{ delay: 3000 }}
+      modules={[Autoplay]}
+      breakpoints={{
+        0: { slidesPerView: 1 },
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 2 },
+      }}
+      className="w-full"
+    >
+      {relatedProducts.map((p) => (
+        <SwiperSlide key={p.id}>
+          <Link href={`/product/${p.id}`}>
+            <div className="p-2 bg-white rounded-lg shadow hover:shadow-md transition w-full text-center">
+              <img
+                src={p.image}
+                alt={p.name}
+                className="w-full h-32 object-contain rounded"
+              />
+              <h3 className="font-medium mt-2 text-sm">{p.name}</h3>
+              <p className="text-sm text-gray-600">قیمت: {formatPrice(p.price)} تومان</p>
+            </div>
+          </Link>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</div>
       {/* فیلتر بر اساس ویژگی */}
       <div>
       <h1 className="text-xl font-semibold text-center p-4 "> انتخاب بر اساس ویژگی</h1>
@@ -121,14 +128,14 @@ export default function ProductsContainer() {
             className="cursor-pointer hover:opacity-80 transition-all"
           >
             <Image src={item.image} width={160} height={150} alt={item.feature} className="rounded-md" />
-            {/* <p className="text-center mt-2">{item.feature}</p> */}
           </div>
         ))}
       </div>
       </div>
 
       {/* فیلتر بر اساس قیمت */}
-      <div className="flex justify-center overflow-x-auto gap-2 p-4 w-full ">
+      <h1 className="text-xl font-semibold text-center p-4 m-0"> انتخاب بر اساس قیمت</h1>
+      <div className="flex justify-center overflow-x-auto gap-6 p-4 w-full ">
         {priceRanges.map((range, index) => (
           <div
             key={index}
