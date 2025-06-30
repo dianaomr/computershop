@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import ProductsContainer from "./products_container";
+import Navbar from "@/components/common/navbar";
+import Footer from "@/components/common/footer";
 interface Slide {
   image: string;
   title: string;
@@ -62,13 +64,14 @@ export default function AboutUs() {
 
   return (
     <div className="home-page">
-      <div dir="rtl" className="w-full flex gap-4 items-center rtl text-right p-10 ">
+       <Navbar />
+      <div dir="rtl" className="w-full  gap-4 items-center rtl text-right p-10 ">
         {/* اسلایدشو */}
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
-          className="w-11/12 h-80 "
+          className="w-full h-96 "
         >
           {slides.map((slide, index) => (
             <SwiperSlide
@@ -86,12 +89,15 @@ export default function AboutUs() {
             </SwiperSlide>
           ))}
         </Swiper>
+  
+        <ProductsContainer />
 
+      </div>
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
-          className="w-8/12 h-96"
+          className="w-8/12 h-80"
         >
           {secslides.map((slide, index) => (
             <SwiperSlide
@@ -101,16 +107,14 @@ export default function AboutUs() {
             >
               <div className="absolute inset-0 bg-black/50 flex items-center justify-between p-10 rounded-md">
                 <div className=" text-red text-right flex">
-                  <h2 className="title text-4xl font-bold">{slide.title} |</h2>
-                  {/* <p className="detail mt-2 text-lg">{slide.text}</p> */}
+                  <h2 className="title text-4xl font-bold">{slide.title} </h2>
                 </div>
                 <button className="button-more">بیشتر</button>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-      <ProductsContainer />
+        <Footer />
     </div>
   );
 }

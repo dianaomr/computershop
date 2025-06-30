@@ -75,41 +75,41 @@ export default function ProductsContainer() {
               onClick={() => handleGenderClick(item.gender)}
               className="cursor-pointer hover:opacity-80 transition-all"
             >
-              <Image src={item.image} width={380} height={300} alt={item.gender} className="rounded" />
+              <Image src={item.image} width={390} height={300} alt={item.gender} className="rounded" />
             </div>
           ))}
         </div>
 
       
-<div className="mt-16 bg-white p-2 rounded-md grid grid-cols-1 md:grid-cols-4 gap-2 items-center">
-  <div className="col-span-1 flex w-[250px] m-6 items-center rounded-md min-h-[100px] ">
-    <img className=" flex h-[200px] text-center items-center justify-center "   src="/images/slide.jpg"></img>
+<div className="mt-6 bg-white p-2 rounded-md grid grid-cols-1 md:grid-cols-4 gap-2 items-center">
+  <div className="col-span-1 flex  m-4 items-center rounded-md min-h-[100px] ">
+    <img className=" flex h-[200px] w-full text-center items-center justify-center rounded-md "   src="/images/slide.jpg"></img>
   </div>
 
   <div className="col-span-3">
-    <h2 className="text-lg font-semibold mb-4 text-right mr-4">محصولات پرطرفدار</h2>
+    <h2 className="text-lg font-semibold mb-2 text-right mr-4 text-black">محصولات پرطرفدار</h2>
     <Swiper
       spaceBetween={12}
       autoplay={{ delay: 3000 }}
       modules={[Autoplay]}
       breakpoints={{
         0: { slidesPerView: 1 },
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 2 },
+        640: { slidesPerView: 3 },
+        1024: { slidesPerView: 4 },
       }}
       className="w-full"
     >
       {relatedProducts.map((p) => (
         <SwiperSlide key={p.id}>
           <Link href={`/product/${p.id}`}>
-            <div className="p-2 bg-white rounded-lg shadow hover:shadow-md transition w-full text-center">
+            <div className="slider-card p-2 -botton-10 bg-white rounded-md shadow hover:shadow-md transition w-full text-center">
               <img
                 src={p.image}
                 alt={p.name}
-                className="w-full h-32 object-contain rounded"
+                className="w-full h-32 object-contain rounded-md"
               />
               <h3 className="font-medium mt-2 text-sm">{p.name}</h3>
-              <p className="text-sm text-gray-600">قیمت: {formatPrice(p.price)} تومان</p>
+              <p className="text-md "> {formatPrice(p.price)} تومان</p>
             </div>
           </Link>
         </SwiperSlide>
