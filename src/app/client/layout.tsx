@@ -10,7 +10,7 @@ import { store } from "@/redux/store";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="client-side">
         <ReduxProvider store={store}>
           <QueryProvider>
             <Navbar />
