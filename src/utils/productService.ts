@@ -20,6 +20,7 @@ export interface ProductForm {
   id?: string;
   name: string;
   image?: string;
+  // image?: string | File | undefined;
   category?: string;
   price: number;
   gender?: string;
@@ -86,7 +87,46 @@ export const addProduct = async (product: Product): Promise<Product> => {
   }
 };
 
+// export const uploadProductImage = async (file: File): Promise<string> => {
+//   const formData = new FormData();
+//   formData.append('image', file); // مطمئن شو که نام فیلد ارسال شده با سرور مطابقت داره
+
+//   try {
+//     const response = await axios.post(
+//       'http://api.alikooshesh.ir:3000/upload-image',
+//       formData,
+//       {
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//           'api_key': API_KEY, // اگه API_KEY نیاز دارید، این خط رو بزارید
+//         },
+//       }
+//     );
+
+//     // بررسی پاسخ سرور
+//     console.log('Response from server:', response.data); // لاگ پاسخ سرور برای بررسی
+
+//     const imageUrl = response.data.imageUrl; // مطمئن بشید که این کلید درست هست
+//     if (!imageUrl) {
+//       throw new Error('آدرس عکس از سرور دریافت نشد');
+//     }
+
+//     return imageUrl;
+//   } catch (error) {
+//     // نمایش خطا در کنسول برای خطایابی
+//     console.error("❌ خطا در آپلود عکس:", error);
+
+//     // اگر خطا از سرور باشه، می‌تونید جزئیات بیشتری از خطا رو نمایش بدید
+//     if (axios.isAxiosError(error)) {
+//       console.error("خطای axios:", error.response?.data || error.message);
+//     }
+
+//     throw new Error('آپلود عکس انجام نشد');
+//   }
+// };
+
 // ویرایش محصول
+
 export const updateProduct = async (product: Product): Promise<Product> => {
   if (!product.id) {
     throw new Error('شناسه محصول برای بروزرسانی لازم است');
