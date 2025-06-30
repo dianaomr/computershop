@@ -4,7 +4,6 @@
 
 
 
-// @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
 body, * {
   font-family: "Vazirmatn", "Ubuntu", sans-serif;
@@ -42,18 +41,20 @@ body, * {
     --rounded-left: 6rem 2rem 2rem 6rem;
     --rounded-right: 2rem 6rem 6rem 2rem;
   }
-
-  main{
-    background-color: var(--light);
+  .client-side{
+    background: #222226;
+background: linear-gradient(149deg, rgba(34, 34, 38, 1) 0%, rgba(133, 136, 140, 1) 42%, rgba(195, 203, 212, 1) 100%);
   }
+//   main{
+//     // background-color: var(--dark);
+//     background: #222226;
+// background: linear-gradient(149deg, rgba(34, 34, 38, 1) 0%, rgba(120, 122, 125, 1) 50%, rgba(195, 203, 212, 1) 100%);
+//   }
 
 .sidebar {
   background-color: var(--dark);
   font-family: "Ubuntu", sans-serif;
   padding: 0.9rem 2rem;
-  // border-radius: 0.5rem;
-  // font-weight: 600;
-  // letter-spacing: 0.1px;
   text-transform: uppercase;
   cursor: pointer;
 
@@ -121,26 +122,36 @@ button{
 }
 
 .home-page{
-  background-color: var(--light);
-
+  // background-color: var(--dark);
+  background: #222226;
+background: linear-gradient(149deg, rgba(34, 34, 38, 1) 0%, rgba(133, 136, 140, 1) 42%, rgba(195, 203, 212, 1) 100%);
 }
-.product-list{
+.slider-card {
   background-color: var(--light);
 }
+// .product-list{
+//   // background-color: var(--light);
+// }
 .pro-card{
+  background: #edf3f7;
+   background: radial-gradient(circle, rgba(237, 243, 247, 1) 0%, rgba(177, 178, 179, 1) 100%);
   &:hover{
-    background-color: var(--dark);
+    background: var(--dark);
     color: #DDDDDD;
   }
-  
 }
-.header{
-  background-color: var(--light);
 
+// .header{
+//   // background-color: var(--dark);
+// }
+.search-drop{
+  background-color:#85888C;
+}
+.search-input{
+  color: var(--light);
 }
 .navbar{
-  background-color: var(--light);
-  color: var(--dark);
+  color: var(--light);
   padding-bottom: 10px;
 li{
   &:hover{
@@ -149,7 +160,6 @@ li{
 }
 }
 .footer{
-  background-color: var(--light);
   color: var(--dark);
   .contact{
     background-color: var(--dark);
@@ -196,4 +206,6 @@ li{
 }
 .FaHeart{
   color:var(--red);
+  text-align: left;
+  justify-content: left;
 }
