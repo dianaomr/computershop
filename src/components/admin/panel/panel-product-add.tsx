@@ -21,12 +21,14 @@ interface PanelProductAddProps {
   onSubmit: (data: ProductForm) => void;
   isPending?: boolean;
   defaultValues?: Product | null;
+  onClose: () => void; 
 }
 
 export default function PanelProductAdd({
   onSubmit,
   isPending = false,
   defaultValues,
+  onClose,
 }: PanelProductAddProps) {
   usePersianNumbers();
 
@@ -96,6 +98,7 @@ export default function PanelProductAdd({
           };
           onSubmit(cleanedData);
           toast.success("محصول با موفقیت بروزرسانی شد");
+          onClose();
         })}
         className="space-y-4"
       >

@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { toast } from 'react-hot-toast';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import usePersianNumbers from "@/utils/usePersianNumbers";
+// import { uploadProductImage } from "@/utils/productService";
 import {
   fetchProducts,
   addProduct,
@@ -35,6 +36,7 @@ interface ProductForm {
   id?: string;
   name: string;
   image?: string;
+  // image?: string | File | undefined;
   category: string;
   price: number;
   feature?: string | string[];
@@ -118,6 +120,73 @@ export default function ProductPanel() {
     },
   });
 
+  // // const handleSubmit = (data: ProductForm) => {
+  //   const handleSubmit = (data: {
+  //     name: string;
+  //     price: number;
+  //     category: string;
+  //     brand: string;
+  //     gender: string;
+  //     id?: string;
+  //     image?: string | File;
+  //     feature?: string | string[];
+  //     description?: string;
+  //   }) => {
+    
+  //   // const handleSubmit = (data: Omit<ProductForm, 'image'> & { image?: string }) => {
+  //   const cleaned: Product = {
+  //     ...data,
+  //     id: data.id ?? crypto.randomUUID(), 
+  //     feature: typeof data.feature === "string"
+  //       ? data.feature.split(",").map(f => f.trim())
+  //       : data.feature ?? [],
+  //   };
+  
+  //   if (data.id) {
+  //     editProduct(cleaned);
+  //   } else {
+  //     createProduct(cleaned);
+  //   }
+  // };
+  // const handleSubmit = async (data: {
+  //   name: string;
+  //   price: number;
+  //   category: string;
+  //   brand: string;
+  //   gender: string;
+  //   id?: string;
+  //   image?: string | File;
+  //   feature?: string | string[];
+  //   description?: string;
+  // }) => {
+  //   try {
+  //     let image: string | undefined;
+  
+  //     // اگر image از نوع File بود، آپلودش می‌کنیم و آدرسش رو می‌گیریم
+  //     if (data.image instanceof File) {
+  //       image = await uploadProductImage(data.image); // این تابع باید string برگردونه
+  //     } else {
+  //       image = data.image;
+  //     }
+  
+  //     const cleaned: Product = {
+  //       ...data,
+  //       id: data.id ?? crypto.randomUUID(),
+  //       image, // حالا image فقط string هست
+  //       feature: typeof data.feature === "string"
+  //         ? data.feature.split(",").map(f => f.trim())
+  //         : data.feature ?? [],
+  //     };
+  
+  //     if (data.id) {
+  //       editProduct(cleaned);
+  //     } else {
+  //       createProduct(cleaned);
+  //     }
+  //   } catch (error) {
+  //     toast.error("خطا در ارسال اطلاعات");
+  //   }
+  // };
   const handleSubmit = (data: ProductForm) => {
     const cleaned: Product = {
       ...data,
@@ -126,14 +195,13 @@ export default function ProductPanel() {
         ? data.feature.split(",").map(f => f.trim())
         : data.feature ?? [],
     };
-  
     if (data.id) {
       editProduct(cleaned);
     } else {
       createProduct(cleaned);
     }
   };
-  
+
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -209,8 +277,10 @@ export default function ProductPanel() {
             )}
             <PanelProductAdd
               onSubmit={handleSubmit}
+
               isPending={false}
               defaultValues={editingProduct}
+              onClose={() => setOpen(false)} 
             />
           </Dialog>
         </div>
