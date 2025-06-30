@@ -1,14 +1,11 @@
 
 'use client';
-
 import { useState } from 'react';
-import styles from '@/signup.module.scss';
+import styles from './signup.module.scss';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-// import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
-
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,8 +43,8 @@ export default function LoginPage() {
         />
         <div className='relative'>
         <input
-          type="password"
-          placeholder="رمز عبور..."
+  type={showPassword ? "text" : "password"}
+  placeholder="رمز عبور..."
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
