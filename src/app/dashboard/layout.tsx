@@ -26,7 +26,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, []);
 
   if (!checkedAuth || !isAuthorized) {
-    return null; // هیچ چیز نمایش داده نشود
+    return null; 
   }
 
   return (
