@@ -1,11 +1,25 @@
+
 "use client";
 
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { setFavorites } from "@/redux/slices/favoriteSlice";
 import ProductCard from "../products/product_card";
 
 const FavoritesPage = () => {
+  const dispatch = useDispatch();
   const favorites = useSelector((state: RootState) => state.favorites.items);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      const savedFavorites = localStorage.getItem(`favorites_${token}`);
+      if (savedFavorites) {
+        dispatch(setFavorites(JSON.parse(savedFavorites)));
+      }
+    }
+  }, [dispatch]);
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
