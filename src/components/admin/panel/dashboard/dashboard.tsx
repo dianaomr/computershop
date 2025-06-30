@@ -1,48 +1,54 @@
-
 "use client";
 
 import StatsCard from "./StatsCard";
 import Chart from "./chart";
 import VideoBackground from "./VideoBackground";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-
 export default function DashboardPage() {
   const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null); 
 
   useEffect(() => {
     const token = Cookies.get("auth_token");
     if (!token) {
       router.push("/client/PanelLogin");
+    } else {
+      setIsAuthorized(true); 
     }
-  }, [router]);
+  }, []);
+
+  // در حال بررسی وضعیت دسترسی
+  if (isAuthorized === null) {
+    return (
+      <div className="flex justify-center items-center min-h-screen text-xl font-bold">
+        در حال بارگذاری...
+      </div>
+    );
+  }
+
   return (
-    <div className="relative p-3 rounded-md min-h-screen text-black overflow-hidden p-0">
-      {/* ویدیو پس‌زمینه */}
+    <div className="relative p-3 rounded-md min-h-screen text-black overflow-hidden">
       <VideoBackground />
 
-      {/* محتوای داشبورد */}
       <div className="dashboard-main relative z-10 px-3 sm:px-3 lg:px-3 max-w-7xl mx-auto">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-start">
           داشبورد مدیریت
         </h1>
 
-        {/* کارت‌های آماری  */}
         <div className="dasboard-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
-          <StatsCard title="فروش امروز" value=" ۲,۵۰۰,۰۰۰ تومان" />
+          <StatsCard title="فروش امروز" value="۲,۵۰۰,۰۰۰ تومان" />
           <StatsCard title="سفارشات جدید" value="۳۲" />
           <StatsCard title="کاربران فعال" value="۱۲۰" />
           <StatsCard title="محصولات موجود" value="۳۵" />
         </div>
 
-        {/* نمودار  */}
-        <div className=" opacity-50 backdrop-blur-sm rounded-xl shadow-md p-4 md:p-6 border border-black mb-10">
+        <div className="opacity-90 backdrop-blur-sm rounded-xl shadow-md p-4 md:p-6 border border-black mb-10">
           <Chart />
         </div>
 
-        {/* ویدیو نمودار */}
         <div className="w-full flex justify-center">
           <video
             autoPlay
