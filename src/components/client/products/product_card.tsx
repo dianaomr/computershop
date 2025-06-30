@@ -64,7 +64,7 @@ const ProductCard = ({ product }: Props) => {
   return (
     <li
       dir="rtl"
-      className="pro-card bg-white rounded-2xl shadow-sm hover:shadow-md transition-all p-4 flex flex-col gap-2"
+      className="pro-card rounded-2xl shadow-sm hover:shadow-md transition-all p-4 flex flex-col gap-2"
     >
       <div className="text-left">
         {isFavorite ? (
